@@ -1,0 +1,3 @@
+serial, regdate, firstname
+1, 11/12/08, Jeff
+2, 6/22/86, Vivienne
