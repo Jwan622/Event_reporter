@@ -42,8 +42,8 @@ class CSVHandler
     "#{data[0]},#{data[1]},#{data[2]},#{data[3]},#{data[4]},#{data[5]},#{data[6]},#{data[7]},#{data[8]},#{data[9]}"
   end
 
-  def csv_header #there might need to be a space here
-    "Serial, RegDate,first_Name,last_Name,Email_Address,HomePhone,Street,City,State,Zipcode"
+  def csv_header
+    "Serial,RegDate,first_Name,last_Name,Email_Address,HomePhone,Street,City,State,Zipcode"
   end
 
 end

@@ -1,44 +1,71 @@
 Class CSVCleaner
 
-  def zip_code_cleaner(row) #cleaner methods do the actual replacing of dirty data to clean data
-      row[8] = format_zipcode(row[8])
+  def serial_number_swapper(dataset)
+    dataset.each do |column|
+      column[0] = clean_serial_number[column[0]]
     end
   end
 
-  def format_zipcode(zipcode) #actually cleans the data. Does the actual cleaning
-    zipcode.to_s.rjust(5,"0")[0..4]
-  end
-
-  def phone_number_sanitizer(data) #sanitizers are just switching code
-    data.each do |data|
-      data[4] = format_phone_number(data[4])
+  def clean_serial_number(serial)
+    if serial.nil? || serial == ""
+      serial = "00"
+    else
+      serial
     end
   end
 
-  def format_phone_number(phone_number)
-    phone_number.to_s.gsub(/[^0-9]/, "").ljust(10,"0")[1..10]
+  def regdate_swapper(dataset)
   end
 
-  def name_sanitizer(data)
-    first_name_sanitizer(data)
-    last_name_sanitizer(data)
+  def name_swapper(dataset)
+    dataset.each do |column|
+      column[2] = clean_first_name(column[2])
+      column[3] = clean_last_name(column[3])
+    end
   end
 
-  def first_name_sanitizer(array)
-    new_first_name = []
-    new_first_name << array[1].downcase!
+  def email_swapper(dataset)
+    dataset.each do |column|
+      column[4] = clean_email(column[4])
   end
 
-  def last_name_sanitizer(data)
-    new_last_name = []
-    new_last_name << data[2].downcase!
+  def clean_first_name(name)
+    new_first_name = ""
+    new_first_name = name.strip.downcase
   end
 
-  def city_sanitizer(array) #this replaces data[6] with the new city name
-    data[6] = format_city(data[6])
+  def clean_last_name(name)
+    new_last_name = ""
+    new_last_name = name.strip.downcase
   end
 
-  def format_city(city)
+  def phone_number_swapper(dataset)
+    dataset.each do |column|
+      data[5] = clean_phone_number(column[5])
+    end
+  end
+
+  def clean_phone_number(phone_number)
+    phone_number.gsub(/[^0-9]/, "").ljust(10,"0")[0..9]
+  end
+
+
+  def zip_code_swapper(dataset)
+    dataset.each do |column|
+      column[9] = clean_format_zipcode(column[9])
+    end
+  end
+
+  def clean_format_zipcode(zipcode)
+    zipcode.rjust(5,"0")[0..4]
+  end
+
+  def city_sanitizer(dataset)
+    dataset.each do |column|
+    column[7] = clean_up_city(column[7])
+  end
+
+  def clean_up_city(city)
     if city.nil? || city == ""
       city_formatted = "City not provided"
     else
@@ -46,11 +73,12 @@ Class CSVCleaner
     end
   end
 
-  def state_sanitizer(array)
-    data[7] = format_state(data[7])
+  def state_sanitizer(dataset)
+    dataset.each do |column|
+    data[8] = clean_up_state(column[8])
   end
 
-  def format_state(state)
+  def clean_up_state(state)
     if state == nil || state == ""
       state = "State not provided"
     else
@@ -60,8 +88,6 @@ Class CSVCleaner
 
   def self.regdate_sanitizer(data)
     data.each do |data|
-
-
     end
   end
 end

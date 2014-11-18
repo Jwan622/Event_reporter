@@ -3,13 +3,10 @@ require 'csv_cleaner'
 require 'csv_reader'
 class SanitizerTest < Minitest::Test
 
-  def test_serial_exists
-    handler = CSVHandler.new
+  def test_format_serial
+    handler = CSVCleaner.new
     handler.load_file()
-
   end
-
-
 
   def test_format_zipcode
     assert_equal "12345",Sanitizer.format_zipcode("12345")

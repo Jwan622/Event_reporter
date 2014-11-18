@@ -111,3 +111,12 @@ File.open("sample.txt").readlines.each do |line|
 end
 
 =end
+
+
+
+=begin
+What does parse do:?
+a_string = "Dan,34\nMaria,55"
+CSV.parse(a_string) #=> [["Dan", "34"], ["Maria", "55"]]
+
+=end
